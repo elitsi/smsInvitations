@@ -3,20 +3,26 @@ import express from 'express';
 import Controller from './interfaces/controller.interface';
 import errorMiddleware from './middlewares/error.middleware';
 import mongoose from 'mongoose';
+import SMSHandler from './core/smsHandler';
 
 class App {
     public app: express.Application;
+    private mongoUrl: string;
 
     constructor(controllers: Controller[]) {
+        this.mongoUrl = process.env.MONGO_URL;
         this.app = express();
         this.initiateDBConnection();
         this.initializeMiddlewares();
         this.initializeControllers(controllers);
         this.initializeErrorHandling();
+        const smsHandler = new SMSHandler;
+        smsHandler.sendInvitationToUser({firstName: "eli", lastName: "tsinberg", phone: "0543102724"});
     }
 
     private initiateDBConnection() {
-        mongoose.connect('mongodb://localhost/smsInivitatio', { useNewUrlParser: true });
+        console.log(this.mongoUrl);
+        mongoose.connect(this.mongoUrl, { useNewUrlParser: true });
     }
 
     public listen() {
