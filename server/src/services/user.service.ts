@@ -1,25 +1,20 @@
-import User from '../models/user.model'
+import { UserModel } from '../models/user.model'
 import * as path from 'path'
-import { serialize } from 'bson'
 import { InvitedUserItem } from '../utils/types/globalTypes'
+import SMSHandler from '../core/smsHandler'
 const csvtojson = require('csvtojson/v2')
 
 async function getUsers() {
-  return User.find({}).exec()
+  return UserModel.find({}).exec()
 }
 
-async function insertUser({
-  firstName,
-  lastName,
-  phoneNumber,
-}: {
-  firstName: string
-  lastName: string
-  phoneNumber: string
-}) {
-  return User.insertMany([
-    { firstName: firstName, lastName: lastName, phoneNumber: phoneNumber },
-  ])
+async function insertUser(firstName: string, lastName: string, phoneNumber: string) {
+  const User = new UserModel({
+    firstName: firstName,
+    lastName: lastName,
+    phoneNumber: phoneNumber,
+  })
+  return User.save()
 }
 
 async function insertUsers(users: InvitedUserItem[]) {
@@ -31,27 +26,26 @@ async function insertUsers(users: InvitedUserItem[]) {
       invited: user.invited,
     }
   })
-  return User.insertMany(usersObject)
+
+  try {
+    for (const user of usersObject) {
+      const User = new UserModel(user)
+      await User.save()
+    }
+  } catch (error) {
+    console.error(error)
+  }
 }
 
-async function updateUserAnswer({
-  userId,
-  invitationAnswer,
-  foodType,
-  needRide,
-}: {
-  userId: string
-  invitationAnswer: number
-  foodType: number
-  needRide: boolean
-}) {
-  return User.update(
+async function updateUserAnswer(userId: string, invitationAnswer: number, foodType: number, needRide: number) {
+  return UserModel.updateOne(
     { _id: userId },
     {
       $set: {
         invitationAnswer: invitationAnswer,
         foodType: foodType,
-        needRide: needRide,
+        needRide: (needRide === 1 ? true : false),
+        updatedAt: new Date()
       },
     }
   ).exec()
@@ -61,7 +55,7 @@ async function loadUsersFromCsv() {
   const filePath = path.resolve(__dirname, '../../inviteList.csv')
   try {
     const jsonArray = await csvtojson().fromFile(filePath)
-    const filteredUsers: InvitedUserItem[] = filterUsersFromList(jsonArray)
+    const filteredUsers: InvitedUserItem[] = filterUsersFromListForInsertion(jsonArray)
 
     console.log(`Total users: ${jsonArray.length}`)
     console.log(`Filtered usres: ${filteredUsers.length}`)
@@ -70,38 +64,30 @@ async function loadUsersFromCsv() {
     console.error(e)
   }
 }
-//loadUsersFromCsv()
 
-function filterUsersFromList(
-  users: any
-): [
-  {
-    firstName: string
-    lastName: string
-    phoneNumber: string
-    invited: number
-  }
-] {
+function filterUsersFromListForInsertion(users: any): InvitedUserItem[] {
   return users
-    .filter((user: any) => {
+    .filter((user: InvitedUserItem) => {
       const ans =
-        user.firstName.length > 0 &&
-        user.lastName.length > 0 &&
-        user.phone.length > 0 &&
-        user.invited.length > 0
+        user.firstName.length > 0 && user.lastName.length > 0 && user.phoneNumber.length > 0 && user.invited > 0
       if (!ans) {
         console.log(`Invalid user: ${user.firstName} ${user.lastName}`)
       }
       return ans
     })
-    .map((user: any) => {
+    .map((user: InvitedUserItem) => {
       return {
         firstName: user.firstName,
         lastName: user.lastName,
-        phoneNumber: user.phone.replace('-', '0').trim(),
-        invited: parseInt(user.invited),
+        phoneNumber: user.phoneNumber.replace('-', '0').trim(),
+        invited: user.invited,
       }
     })
 }
 
-export { getUsers, insertUser, updateUserAnswer }
+function sendUsersInvitation() {
+  const smsClient = new SMSHandler()
+  smsClient.handleInvitationMesages()
+}
+
+export { getUsers, insertUser, updateUserAnswer, sendUsersInvitation, loadUsersFromCsv }
