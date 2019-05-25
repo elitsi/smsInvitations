@@ -1,43 +1,53 @@
 import * as mongoose from 'mongoose'
+import { prop, Typegoose, ModelType, InstanceType, pre } from 'typegoose'
 
-const Schema = mongoose.Schema
-
-const userSchema = new Schema({
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
-  },
-  invitationSent: {
-    type: Boolean,
-    default: false,
-  },
-  invitationAnswer: {
-    type: Number,
-    default: null,
-  },
-  foodType: {
-    type: Number,
-    default: null,
-  },
-  needRide: {
-    type: Boolean,
-    default: null,
-  },
-  phoneNumber: {
-    type: String,
-    required: true,
-  },
-  invited: {
-    type: Number,
-    required: true,
-    default: null
-  }
+@pre<User>('save', function(next: any) {
+  this.createdAt = new Date();
+  next();
 })
+@pre<User>('updateOne', function(next: any) {
+  this.updatedAt = new Date();
+  next();
+})
+@pre<User>('update', function(next: any) {
+  this.updatedAt = new Date();
+  next();
+})
+export class User extends Typegoose {
+  _id: mongoose.Schema.Types.ObjectId
 
-const User = mongoose.model('users', userSchema)
+  @prop()
+  createdAt: Date
 
-export default User
+  @prop()
+  updatedAt: Date
+
+  @prop()
+  firstName: string
+
+  @prop()
+  lastName: string
+
+  @prop()
+  invitationSent: boolean
+
+  @prop()
+  invitationAnswer: number
+
+  @prop()
+  foodType: number
+
+  @prop()
+  needRide: boolean
+
+  @prop()
+  phoneNumber: string
+
+  @prop()
+  invited: number
+
+  @prop()
+  answerRecievedAt: Date
+}
+
+export const UserModel = new User().getModelForClass(User)

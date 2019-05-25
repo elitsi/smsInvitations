@@ -3,6 +3,7 @@ import Controller from '../interfaces/controller.interface';
 import * as path from 'path';
 
 export default class IndexController implements Controller {
+    rootPath: string = '';
     public paths = {
         get: {
             index: '/'

@@ -16,8 +16,6 @@ class App {
         this.initializeMiddlewares();
         this.initializeControllers(controllers);
         this.initializeErrorHandling();
-        const smsHandler = new SMSHandler;
-        smsHandler.sendInvitationToUser({firstName: "eli", lastName: "tsinberg", phone: "0543102724"});
     }
 
     private initiateDBConnection() {
