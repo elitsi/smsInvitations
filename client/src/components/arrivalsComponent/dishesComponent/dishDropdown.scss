@@ -1,0 +1,9 @@
+.form-group {
+    display: flex;
+    justify-content: center;
+
+    select {
+        max-width: 15%;
+        display: inline-block;
+    }
+}

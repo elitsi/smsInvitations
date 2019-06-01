@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./amountButton.scss";
+import Button from 'react-bootstrap/Button';
 
 export default class AmountButton extends React.Component {
 
@@ -11,12 +12,12 @@ export default class AmountButton extends React.Component {
 
     handleClick = () => {
         this.props.clickHandler(this.props.name);
-    };
+    }; 
     
     render() {
         return (
-            <div className="component-button">
-                <button onClick={this.handleClick}>{this.props.name}</button>
+            <div className="amount-button">
+                <Button variant="light" onClick={this.handleClick}>{this.props.name}</Button>
             </div>
         );
     }

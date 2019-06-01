@@ -10,7 +10,7 @@ export default class DisplayAmount extends React.Component {
 
   render() {
     return (
-      <div className="component-display">
+      <div className="component-display-amount">
         <div>{this.props.value}</div>
       </div>
     );

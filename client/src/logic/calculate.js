@@ -6,8 +6,9 @@ export default function calculate(state, buttonName) {
   }
 
   else if (buttonName === "-") {
+    let updated = (Number(state.total) - 1);
     return {
-        total: (Number(state.total) - 1).toString()
+        total: updated >= 0 ? updated.toString() : "0",
     };
   }
 }
