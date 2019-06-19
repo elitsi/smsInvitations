@@ -17,7 +17,7 @@ export default class AmountButton extends React.Component {
     render() {
         return (
             <div className="amount-button">
-                <Button variant="light" onClick={this.handleClick}>{this.props.name}</Button>
+                <Button variant="outline-secondary" onClick={this.handleClick}>{this.props.name}</Button>
             </div>
         );
     }

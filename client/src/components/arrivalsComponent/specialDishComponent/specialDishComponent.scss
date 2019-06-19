@@ -1,0 +1,23 @@
+.checkbox-container {
+    margin-top: 30px;
+    border-top: 1px solid #ced4da;
+
+    .form-check {
+        padding-right: 12px;
+        padding-left: 0;
+        text-align: right;
+        margin: 10px 0;
+
+        input {
+            margin-left: 0;
+        }
+
+        label {
+            padding-right: 10px;
+        }
+    }
+}
+
+table {
+    margin-left: auto;
+}

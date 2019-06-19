@@ -4,8 +4,8 @@ import DisplayAmount from "./displayAmount";
 import calculate from "../../logic/calculate";
 import UpdateButton from "./updateButton";
 import { Row, Col, Container, Form } from "react-bootstrap";
+import SpecialDishCheckbox from "./specialDishComponent"
 import "./arrivalsComponent.scss";
-import DishDropdown from "./dishesComponent";
 
 export default class ArrivalsComponent extends React.Component {
   // total - current total amount
@@ -20,23 +20,24 @@ export default class ArrivalsComponent extends React.Component {
 
   render() {
     return (
-      <Container>
-        <Form>
-          <Row className="component-app justify-content-center arrivals-title">
-            אשרו הגעתכם
+      <Container className="arrivals">
+        <Row >
+          <Col className="wedding-title">הנכם מוזמנים לחתונה של אמבר ואלי</Col>
         </Row>
-          <Row className="component-app justify-content-center">
-            <Col xs="2"><AmountButton name="+" clickHandler={this.handleClick} /></Col>
-            <Col xs="2"><DisplayAmount value={this.state.total} /></Col>
-            <Col xs="2"><AmountButton name="-" clickHandler={this.handleClick} /></Col>
+        <Form>
+          <Row className="component-app justify-content-center ">
+            <Col xs="7" className="amount-section">
+              <Col xs="4"><AmountButton name="+" clickHandler={this.handleClick} /></Col>
+              <Col xs="2"><DisplayAmount value={this.state.total} /></Col>
+              <Col xs="4"><AmountButton name="-" clickHandler={this.handleClick} /></Col>
+            </Col>
+            <Col xs="5" className="arrivals-title"> אשרו הגעתכם</Col>
           </Row>
-          <DishDropdown label="מנה בשרית"/>
-          <DishDropdown label="מנת דג"/>
-          <DishDropdown label="מנה צמחונית"/>
-          <DishDropdown label="מנה טבעונית"/>
+
+          <SpecialDishCheckbox></SpecialDishCheckbox>
 
           <Row className="component-app justify-content-center">
-            <Col xs="5"><UpdateButton></UpdateButton></Col>
+            <Col xs="12"><UpdateButton></UpdateButton></Col>
           </Row>
         </Form>
       </Container>

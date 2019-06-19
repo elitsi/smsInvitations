@@ -2,8 +2,14 @@
     display: flex;
     justify-content: center;
 
+
     select {
-        max-width: 15%;
         display: inline-block;
     }
+
+}
+
+td.dish-label {
+    text-align: right;
+    width: 135px;
 }

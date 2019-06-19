@@ -1,5 +1,33 @@
-.arrivals-title {
-    font-weight: 700;
-    font-size: 19px;
-    color: #884bb4d4;
+.arrivals {
+    margin: 23px 0;
+
+    .arrivals-title {
+        font-weight: 500;
+        font-size: 17px;
+        text-align: right;
+        padding-right: 28px;
+        padding-left: 0;
+    }
+}
+
+.amount {
+    display: inline-block;
+}
+
+.component-app .amount-section > div{
+    display: inline-block;
+}
+
+div.wedding-title {
+    font-weight: 500;
+    font-size: 17px;
+    text-align: right;
+    font-size: 17px;
+    padding-right: 28px;
+    margin-bottom: 20px;
+}
+
+form {
+    border-top: 1px solid #ced4da;
+    padding-top: 30px;
 }
