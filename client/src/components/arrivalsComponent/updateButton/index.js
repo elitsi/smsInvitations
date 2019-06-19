@@ -5,7 +5,7 @@ export default class UpdateButton extends React.Component {
     
     render() {
         return (
-            <div className="component-button">
+            <div className="update">
                 <button>עדכנו הגעתכם</button>
             </div>
         );

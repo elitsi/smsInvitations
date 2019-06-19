@@ -2,6 +2,11 @@
     display: inline-block;
 
     button {
-        // color: red;
+        height: 30px;
+        width: 30px;
+        background-color: white;
+        border-radius: 50%;
+        border: 1px solid #ced4da;
+        padding: 0;
     }
 }
