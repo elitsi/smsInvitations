@@ -10,10 +10,12 @@ export default class SpecialDishComponent extends React.Component {
 
         this.state = {
             specialDish: false,
-            transport: false
+            transportCenter: false,
+            transportSouth: false
         };
         this.handleChangeSpecialDish = this.handleChangeSpecialDish.bind(this);
-        this.handleChangeTransport = this.handleChangeTransport.bind(this);
+        this.handleChangeTransportCenter = this.handleChangeTransportCenter.bind(this);
+        this.handleChangeTransportSouth = this.handleChangeTransportSouth.bind(this);
     }
 
     handleChangeSpecialDish() {
@@ -22,9 +24,15 @@ export default class SpecialDishComponent extends React.Component {
         })
     }
 
-    handleChangeTransport() {
+    handleChangeTransportCenter() {
         this.setState({
-            transport: !this.state.transport
+            transportCenter: !this.state.transportCenter
+        })
+    }
+
+    handleChangeTransportSouth() {
+        this.setState({
+            transportSouth: !this.state.transportSouth
         })
     }
 
@@ -50,7 +58,12 @@ export default class SpecialDishComponent extends React.Component {
 
                 <Form.Check type="checkbox">
                     <Form.Check.Label>הסעה מבאר שבע</Form.Check.Label>
-                    <Form.Check.Input type="checkbox" checked={this.state.transport} onChange={this.handleChangeTransport} />
+                    <Form.Check.Input type="checkbox" checked={this.state.transportSouth} onChange={this.handleChangeTransportSouth} />
+                </Form.Check>
+
+                <Form.Check type="checkbox">
+                    <Form.Check.Label>הסעה מבקעת אונו</Form.Check.Label>
+                    <Form.Check.Input type="checkbox" checked={this.state.transportCenter} onChange={this.handleChangeTransportCenter} />
                 </Form.Check>
             </Container>);
     }
