@@ -35,7 +35,7 @@ export class User extends Typegoose {
   invitationAnswer: number
 
   @prop()
-  foodType: number
+  foodType: {vegie: {type: number, default: 0}, vegan: {type: number, default: 0}, gloten_free: {type: number, default: 0}}
 
   @prop()
   needRide: boolean
@@ -45,9 +45,6 @@ export class User extends Typegoose {
 
   @prop()
   invited: number
-
-  @prop()
-  answerRecievedAt: Date
 }
 
 export const UserModel = new User().getModelForClass(User)

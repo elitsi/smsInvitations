@@ -1,6 +1,6 @@
 import { UserModel } from '../models/user.model'
 import * as path from 'path'
-import { InvitedUserItem } from '../utils/types/globalTypes'
+import { InvitedUserItem, IFoodType } from '../utils/types/globalTypes'
 import SMSHandler from '../core/smsHandler'
 const csvtojson = require('csvtojson/v2')
 
@@ -37,7 +37,7 @@ async function insertUsers(users: InvitedUserItem[]) {
   }
 }
 
-async function updateUserAnswer(userId: string, invitationAnswer: number, foodType: number, needRide: number) {
+async function updateUserAnswer(userId: string, invitationAnswer: number, foodType: IFoodType, needRide: number) {
   return UserModel.updateOne(
     { _id: userId },
     {

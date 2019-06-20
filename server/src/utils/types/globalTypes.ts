@@ -7,3 +7,9 @@ export type InvitedUserItem = {
     phoneNumber: string
     invited: number
 };
+
+export type IFoodType = {
+  vegie: number,
+  vegan: number,
+  gloten_free: number
+}

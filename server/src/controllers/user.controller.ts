@@ -1,6 +1,7 @@
 import express from 'express'
 import Controller from '../interfaces/controller.interface'
 import { getUsers, insertUser, updateUserAnswer, sendUsersInvitation, loadUsersFromCsv } from '../services/user.service'
+import { IFoodType } from '../utils/types/globalTypes';
 
 export default class UserController implements Controller {
   rootPath: string = '/api/users';
@@ -27,7 +28,7 @@ export default class UserController implements Controller {
   private initializeRoutes() {
     this.router.get(this.rootPath + this.paths.get.getUsers, (req, res, next) => this.getUsers(req, res, next))
     this.router.post(this.rootPath + this.paths.post.insertUser, (req, res, next) => this.insertUser(req, res, next))
-    this.router.patch(this.rootPath + this.paths.patch.updateUserAnswer, (req, res, next) => this.updateUser(req, res, next))
+    this.router.patch(this.rootPath + this.paths.patch.updateUserAnswer, (req, res, next) => this.updateInvitation(req, res, next))
     this.router.post(this.rootPath + this.paths.post.sendInvitations, (req, res, next) => this.sendInvitations(req, res, next))
     //this.router.post(this.paths.post.loadUsers, (req, res, next) => this.loadUsersFromCsv(req, res, next))
   }
@@ -63,10 +64,10 @@ export default class UserController implements Controller {
     return null
   }
 
-  private async updateUser(request: express.Request, response: express.Response, next: express.NextFunction) {
+  private async updateInvitation(request: express.Request, response: express.Response, next: express.NextFunction) {
     const userId: string = request.body.userId
     const invitationAnswer: number = request.body.invitationAnswer
-    const foodType: number = request.body.foodType
+    const foodType: IFoodType = request.body.foodType
     const needRide: number = request.body.needRide
 
     if (userId && invitationAnswer && foodType && needRide !== undefined) {
