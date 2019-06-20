@@ -6,4 +6,4 @@ export type InvitedUserItem = {
     lastName: string
     phoneNumber: string
     invited: number
-  };
+};
