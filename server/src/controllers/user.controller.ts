@@ -68,11 +68,12 @@ export default class UserController implements Controller {
     const userId: string = request.body.userId
     const invitationAnswer: number = request.body.invitationAnswer
     const foodType: IFoodType = request.body.foodType
-    const needRide: number = request.body.needRide
+    const transportSouth: boolean = request.body.transportSouth;
+    const transportCenter: boolean = request.body.transportCenter;
 
-    if (userId && invitationAnswer && foodType && needRide !== undefined) {
+    if (userId && invitationAnswer >= 0 && foodType && transportSouth !== undefined && transportCenter !== undefined) {
       try {
-        await updateUserAnswer(userId, invitationAnswer, foodType, needRide)
+        await updateUserAnswer(userId, invitationAnswer, foodType, transportSouth, transportCenter)
         response.sendStatus(200);
       } catch (e) {
         console.error(e)

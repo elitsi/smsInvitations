@@ -38,7 +38,10 @@ export class User extends Typegoose {
   foodType: {vegie: {type: number, default: 0}, vegan: {type: number, default: 0}, gloten_free: {type: number, default: 0}}
 
   @prop()
-  needRide: boolean
+  transportSouth: boolean
+
+  @prop()
+  transportCenter: boolean
 
   @prop()
   phoneNumber: string

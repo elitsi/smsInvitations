@@ -3,6 +3,7 @@ import express from 'express';
 import Controller from './interfaces/controller.interface';
 import errorMiddleware from './middlewares/error.middleware';
 import mongoose from 'mongoose';
+import * as path from 'path';
 
 class App {
     public app: express.Application;
@@ -31,6 +32,7 @@ class App {
 
     private initializeMiddlewares() {
         this.app.use(bodyParser.json());
+        this.app.use(express.static(path.resolve(__dirname, '../../client/build')));
     }
 
     private initializeErrorHandling() {

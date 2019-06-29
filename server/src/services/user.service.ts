@@ -38,15 +38,22 @@ async function insertUsers(users: InvitedUserItem[]) {
   }
 }
 
-async function updateUserAnswer(userId: string, invitationAnswer: number, foodType: IFoodType, needRide: number) {
+async function updateUserAnswer(
+  userId: string,
+  invitationAnswer: number,
+  foodType: IFoodType,
+  transportSouth: boolean,
+  transportCenter: boolean
+) {
   return UserModel.updateOne(
     { _id: userId },
     {
       $set: {
         invitationAnswer: invitationAnswer,
         foodType: foodType,
-        needRide: (needRide === 1 ? true : false),
-        updatedAt: new Date()
+        transportSouth: transportSouth,
+        transportCeneter: transportCenter,
+        updatedAt: new Date(),
       },
     }
   ).exec()
