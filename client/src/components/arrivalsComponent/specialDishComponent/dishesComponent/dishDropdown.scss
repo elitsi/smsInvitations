@@ -1,0 +1,22 @@
+.form-group {
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    select {
+        display: inline-block;
+        height: calc(1.25em + .75rem + 2px);
+    }
+
+}
+
+td.dish-label {
+    text-align: right;
+    width: 135px;
+    font-family: 'Assistant', sans-serif;
+
+    label {
+        margin-bottom: 1rem;
+    }
+}

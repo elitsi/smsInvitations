@@ -22,7 +22,7 @@ export default class IndexController implements Controller {
     }
 
     private getMainPage(request: express.Request, response: express.Response, next: express.NextFunction) {
-        response.sendFile(path.resolve(__dirname, ));
+        response.sendFile(path.resolve(__dirname, "../../../client/build/index.html"));
     }
 
 }

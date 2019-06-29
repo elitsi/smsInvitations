@@ -1,0 +1,71 @@
+.arrivals {
+    margin: 23px 0;
+    font-family: 'Assistant', sans-serif;
+    font-size: 19px;
+
+    .arrivals-title {
+        font-weight: 500;
+        text-align: right;
+        padding-right: 28px;
+        padding-left: 0;
+    }
+}
+
+.amount {
+    display: inline-block;
+}
+
+.component-app .amount-section  {
+
+    .grid-item.display-amount {
+        margin: 0 15px;
+    }
+
+    > div{
+        display: inline-block;
+    }
+}
+
+div.wedding-title {
+    font-weight: 500;
+    text-align: center;
+    padding-right: 15px;
+    margin-bottom: 20px;
+    font-family: 'Assistant', sans-serif;
+
+    .date {
+        padding: 3px 0;
+        font-size: 22px;
+
+        .special-font {
+            font-family: 'Kalam', cursive;
+        }
+    
+    }
+    .seperator {
+        color: #ff5e5e;
+        padding: 0 8px;
+    }
+}
+
+form {
+    border-top: 1px solid #ced4da;
+    padding-top: 20px;
+}
+
+.freepik {
+    margin-top: 100px;
+    font-size: 10px;
+    
+    a {
+        margin: auto;
+        color: #ced4da;
+        text-decoration: none;
+        
+        &:active, &:focus {
+            color: #ced4da;
+            text-decoration: none;
+        }
+
+    }
+}
