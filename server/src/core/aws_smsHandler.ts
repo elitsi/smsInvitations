@@ -14,7 +14,6 @@ import {
 } from 'typegoose';
 import { readFileSync } from 'fs';
 import * as path from 'path';
-import env from '../utils/config/variables';
 
 const TinyURL = require('tinyurl')
 
@@ -30,7 +29,7 @@ export default class SMSHandler {
 
     
     private async buildMessage(phone: string, userId: string) {
-        const url = `${env.CLIENT_URL}?userId=${userId}`
+        const url = `${process.env.CLIENT_URL}?userId=${userId}`
         const finalUrl = await TinyURL.shorten(url)
 
         const message =
