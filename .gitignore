@@ -5,3 +5,4 @@
 /.vscode
 /server/src/utils/config
 /server/inviteList.csv
+/server/out

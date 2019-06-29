@@ -1,7 +1,8 @@
 import { UserModel } from '../models/user.model'
 import * as path from 'path'
 import { InvitedUserItem, IFoodType } from '../utils/types/globalTypes'
-import SMSHandler from '../core/smsHandler'
+//import SMSHandler from '../core/smsHandler'
+import SMSHandler from '../core/aws_smsHandler'
 const csvtojson = require('csvtojson/v2')
 
 async function getUsers() {

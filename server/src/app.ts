@@ -3,7 +3,6 @@ import express from 'express';
 import Controller from './interfaces/controller.interface';
 import errorMiddleware from './middlewares/error.middleware';
 import mongoose from 'mongoose';
-import SMSHandler from './core/smsHandler';
 
 class App {
     public app: express.Application;
