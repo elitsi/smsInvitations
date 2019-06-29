@@ -1,0 +1,22 @@
+{
+  "name": "smsinvitations",
+  "version": "1.0.0",
+  "description": "Send SMS invitations &amp; confirmations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm --prefix /server start",
+    "build": "npm --prefix /server run build && npm --prefix /client run build",
+    "heroku-postbuild": "cd server && npm install && npm run build && cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elitsi/smsInvitations.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elitsi/smsInvitations/issues"
+  },
+  "homepage": "https://github.com/elitsi/smsInvitations#readme"
+}
