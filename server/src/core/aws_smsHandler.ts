@@ -29,13 +29,6 @@ export default class SMSHandler {
 
     
     private async buildMessage(phone: string, userId: string) {
-        const hebTitle = ',שלום \n'
-        const hebSubTitle = 'הוזמנתם לחתונה של אמבר אלמוג ואלי צינברג\n'
-        const hebBody = 'בתאריך' + ' 12/09/2019 ' + 'בהרמוניה בגן '
-        const hebFinal = '\n\n נשמח לראותכם\n\n'
-        const footer = 'לחצו לעדכון הגעתכם - \n'
-
-
         const url = `https://one.co.il/${userId}`
         const finalUrl = await TinyURL.shorten(url)
 
