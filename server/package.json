@@ -1,5 +1,5 @@
 {
-  "name": "realtime-db-node-mongo",
+  "name": "sms-invitation-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

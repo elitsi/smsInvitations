@@ -2,7 +2,6 @@
   "name": "smsinvitations",
   "version": "1.0.0",
   "description": "Send SMS invitations &amp; confirmations",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm --prefix /server start",
