@@ -1,7 +1,7 @@
 import twilio = require('twilio')
 import { getUsers } from '../services/user.service'
 import { User as MUser } from '../models/user.model'
-import { ModelType } from 'typegoose';
+import { ModelType } from 'typegoose'
 const TinyURL = require('tinyurl')
 
 export default class SMSHandler {
@@ -41,8 +41,7 @@ export default class SMSHandler {
     const url = `https://one.co.il/${userId}`
     const finalUrl = await TinyURL.shorten(url)
 
-    const message =
-      hebTitle + hebSubTitle + hebBody + hebFinal + footer + finalUrl
+    const message = hebTitle + hebSubTitle + hebBody + hebFinal + footer + finalUrl
     return message
   }
 
@@ -50,11 +49,9 @@ export default class SMSHandler {
     try {
       const users = await getUsers()
       if (users) {
-        const usersToHandle: InstanceType<ModelType<MUser>>[] = users.filter(
-          (user: MUser) => !user.invitationSent
-        )
+        const usersToHandle: InstanceType<ModelType<MUser>>[] = users.filter((user: MUser) => !user.invitationSent)
         for (const user of usersToHandle) {
-          console.log(`User id is: ${user._id.toHexString()}`);
+          console.log(`User id is: ${user._id.toHexString()}`)
           await this.sendInvitationToUser(user._id.toHexString(), user.phoneNumber)
         }
       } else {

@@ -1,13 +1,12 @@
-import React from "react";
-import "./updateButton.scss";
+import React from 'react'
+import './updateButton.scss'
 
-export default class UpdateButton extends React.Component {
-    
-    render() {
-        return (
-            <div className="update">
-                <button>עדכנו הגעתכם</button>
-            </div>
-        );
-    }
-}
+const UpdateButton = props => {
+  return (
+    <div className="update">
+      <button onClick={props.onClick}>עדכנו הגעתכם</button>
+    </div>
+  )
+};
+
+export default UpdateButton;

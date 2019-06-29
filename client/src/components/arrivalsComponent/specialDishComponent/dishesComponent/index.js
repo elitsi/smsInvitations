@@ -7,7 +7,7 @@ const DishDropdown = (props) => {
         <tr>
             <td>
                 <Form.Group>
-                    <Form.Control as="select">
+                    <Form.Control as="select" onChange={props.onChange}>
                         <option>0</option>
                         <option>1</option>
                         <option>2</option>

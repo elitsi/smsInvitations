@@ -30,7 +30,7 @@ export default class SMSHandler {
 
     
     private async buildMessage(phone: string, userId: string) {
-        const url = `${variables.CLIENT_URL}/${userId}`
+        const url = `${variables.CLIENT_URL}?userId=${userId}`
         const finalUrl = await TinyURL.shorten(url)
 
         const message =
