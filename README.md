@@ -1,6 +1,15 @@
 # smsInvitations
 
-Send SMS invitations &amp; confirmations
+Send SMS invitations &amp; confirmations.
+This app will let you send a custom SMS content for users that not yet recieved an invite.
+All app users are stored in a mongo collection.
+Users answer will be updated in the collection as well.
+
+## Running Instructions
+
+1. This app use AWS sms service. In order to send SMS, you'll have to set up env variables matching your account.
+2. Set up DB uri (mongo) as environment variable.
+3. Run npm start.
 
 ### API's
 
