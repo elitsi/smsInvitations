@@ -4,7 +4,7 @@
   "description": "Send SMS invitations &amp; confirmations",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm --prefix /server start",
+    "start": "npm --prefix ./server start",
     "heroku-postbuild": "cd server && npm install && npm run build && cd ../client && npm install && npm run build"
   },
   "repository": {
