@@ -281,188 +281,6 @@
     <script src="./renderer.js"></script>
 
     <script>
-      const data = {
-        totalInvited: 390,
-        numOfconfirmed: 300,
-        numOfNotArriving: 70,
-        pendingInvitation: 20,
-        notArrivingTable: [
-          {
-            name: 'אלי ציבנרג',
-            phone: '0543102724',
-          },
-          {
-            name: 'אלי ציבנרג',
-            phone: '0543102724',
-          },
-          {
-            name: 'אלי ציבנרג',
-            phone: '0543102724',
-          },
-          {
-            name: 'אלי ציבנרג',
-            phone: '0543102724',
-          },
-          {
-            name: 'אלי ציבנרג',
-            phone: '0543102724',
-          },
-          {
-            name: 'אלי ציבנרג',
-            phone: '0543102724',
-          },
-          {
-            name: 'אלי ציבנרג',
-            phone: '0543102724',
-          },
-          {
-            name: 'אלי ציבנרג',
-            phone: '0543102724',
-          },
-          {
-            name: 'אלי ציבנרג',
-            phone: '0543102724',
-          },
-          {
-            name: 'אלי ציבנרג',
-            phone: '0543102724',
-          },
-          {
-            name: 'אלי ציבנרג',
-            phone: '0543102724',
-          },
-          {
-            name: 'אלי ציבנרג',
-            phone: '0543102724',
-          },
-        ],
-        pendingInvitationTable: [
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-          },
-          {
-            name: 'אלי ציבנרג',
-            phone: '0543102724',
-          },
-        ],
-        partiallyArrivingTable: [
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-          {
-            name: 'אמבר ציבנרג',
-            phone: '0509535595',
-            invited: 2,
-            confirmed: 1,
-          },
-        ],
-      }
-
-      // setTimeout(() => {
-      //   updateTables(data);
-      //       $("#spinner").remove();
-      //       $('#mainContainer').removeAttr('hidden');
-      // }, 3000)
 
       getData()
 
@@ -500,7 +318,7 @@
         }
       }
 
-      // Builds the HTML Table out of myList.
+      // Builds the HTML Table out of data recieved..
       function buildHtmlTable(selector, myList) {
         var columns = addAllColumnHeaders(myList, selector)
 
@@ -514,10 +332,7 @@
           $(selector).append(row$)
         }
       }
-
-      // Adds a header row to the table and returns the set of columns.
-      // Need to do union of keys from all records as some records may not contain
-      // all records.
+      
       function addAllColumnHeaders(myList, selector) {
         var columnSet = []
         var headerTr$ = $('<tr/>')
