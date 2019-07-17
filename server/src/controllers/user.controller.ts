@@ -1,6 +1,6 @@
 import express from 'express'
 import Controller from '../interfaces/controller.interface'
-import { getUsers, insertUser, updateUserAnswer, sendUsersInvitation, loadUsersFromCsv } from '../services/user.service'
+import { getUsers, insertUser, updateUserAnswer, sendUsersInvitation, loadUsersFromCsv, getUsersData } from '../services/user.service'
 import { IFoodType } from '../utils/types/globalTypes';
 
 export default class UserController implements Controller {
@@ -8,6 +8,7 @@ export default class UserController implements Controller {
   paths = {
     get: {
       getUsers: '/getUsers',
+      getDashboardData: '/data.json'
     },
     post: {
       insertUser: '/insertUser',
@@ -27,6 +28,7 @@ export default class UserController implements Controller {
 
   private initializeRoutes() {
     this.router.get(this.rootPath + this.paths.get.getUsers, (req, res, next) => this.getUsers(req, res, next))
+    this.router.get(this.rootPath + this.paths.get.getDashboardData, (req, res, next) => this.getDashboardData(req, res, next))
     this.router.post(this.rootPath + this.paths.post.insertUser, (req, res, next) => this.insertUser(req, res, next))
     this.router.patch(this.rootPath + this.paths.patch.updateUserAnswer, (req, res, next) => this.updateInvitation(req, res, next))
     this.router.post(this.rootPath + this.paths.post.sendInvitations, (req, res, next) => this.sendInvitations(req, res, next))
@@ -36,6 +38,18 @@ export default class UserController implements Controller {
   private async getUsers(request: express.Request, response: express.Response, next: express.NextFunction) {
     const users = await getUsers()
     response.send(JSON.stringify(users))
+  }
+
+  private async getDashboardData(request: express.Request, response: express.Response, next: express.NextFunction) {  
+    try {
+      const data = await getUsersData();
+      response.send(JSON.stringify(data))
+    }
+    catch(error) {
+      console.log(error);
+      response.sendStatus(500);
+    }
+    
   }
 
   private async insertUser(request: express.Request, response: express.Response, next: express.NextFunction) {
@@ -77,7 +91,7 @@ export default class UserController implements Controller {
         response.sendStatus(200);
       } catch (e) {
         console.error(e)
-        response.sendStatus(500)
+        response.status(500).send(e);
       }
     } else {
       response.status(400).send('Missing params')

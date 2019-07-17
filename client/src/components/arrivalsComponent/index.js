@@ -73,7 +73,7 @@ export default class ArrivalsComponent extends React.Component {
       foodType : {
         vegie: this.state.dishes['vegieDish'],
         vegan: this.state.dishes['veganDish'],
-        glotan_free: this.state.dishes['glotenFreeDish'],
+        gloten_free: this.state.dishes['glotenFreeDish'],
       },
       transportSouth: this.state.transports.transportSouth,
       transportCenter: this.state.transports.transportCenter,

@@ -18,7 +18,6 @@ export default class IndexController implements Controller {
     private initializeRoutes() {
         this.router.get(this.paths.get.index, this.getMainPage);
         this.router.get(`${this.paths.get.index}home`, this.getMainPage);
-
     }
 
     private getMainPage(request: express.Request, response: express.Response, next: express.NextFunction) {

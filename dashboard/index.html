@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>אישורי הגעה</title>
+
+    <link rel="stylesheet" href="./index.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body dir="rtl">
+    <div id="main">
+      <div id="spinner" class="loading">
+        <div class="loader"></div>
+      </div>
+
+      <div id="mainContainer" class="container" hidden>
+        <div class="summaryHeader">
+          <div class="row align-items-center">
+            <div class="col-sm">
+              סה"כ
+            </div>
+            <div class="col-sm">
+              <div class="row align-items-center">
+                <div class="col-sm summaryField">
+                  מס' מוזמנים
+                </div>
+              </div>
+              <div class="row align-items-center">
+                <div class="col-sm summaryField">
+                  <span id="totalInvited"> </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="row align-items-center">
+                <div class="col-sm summaryField">
+                  אישרו הגעה
+                </div>
+              </div>
+              <div class="row align-items-center">
+                <div class="col-sm summaryField">
+                  <span id="numOfconfirmed"> </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="row align-items-center">
+                <div class="col-sm summaryField">
+                  לא מגיעים
+                </div>
+              </div>
+              <div class="row align-items-center">
+                <div class="col-sm summaryField">
+                  <span id="numOfNotArriving"> </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="row align-items-center">
+                <div class="col-sm summaryField">
+                  לא הגיבו
+                </div>
+              </div>
+              <div class="row align-items-center">
+                <div class="col-sm summaryField">
+                  <span id="pendingInvitation"> </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="row align-items-center">
+                <div class="col-sm summaryField">
+                  לא קיבלו הודעה
+                </div>
+              </div>
+              <div class="row align-items-center">
+                <div class="col-sm summaryField">
+                  <span id="unrecievedInvitation"> </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="summaryTables">
+          <div class="row">
+            <div class="text-center col-md-6">
+              <div class="summaryTable">
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                    לא מגיעים
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                    <table style="width:100%" id="notArrivingTable"></table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center col-md-6">
+              <div class="ml-2 summaryTable">
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                    לא הגיבו
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                    <table style="width:100%" id="pendingInvitationTable"></table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <!-- <div class="text-center mt-2 col-md-12">
+              <div class="summaryTable">
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                    מגיעים חלקית
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                    <table style="width:100%" id="partiallyArrivingTable"></table>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+            <div class="text-center mt-2  col-md-6">
+              <div class="ml-2 summaryTable">
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                    מגיעים חלקית
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                    <table style="width:100%" id="partiallyArrivingTable"></table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center mt-2  col-md-6">
+              <div class="ml-2 summaryTable">
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                    מגיעים
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                    <table style="width:100%" id="arrivingTable"></table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="text-center mt-2 col-md-12">
+              <div class="summaryTable">
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                    לא קיבלו הודעה
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                    <table style="width:100%" id="unrecievedInvitationTable"></table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="foodSummary">
+          <div class="row align-items-center">
+            <div class="col-sm">
+              סה"כ מנות
+            </div>
+            <div class="col-sm">
+              <div class="row align-items-center">
+                <div class="col-sm summaryField">
+                  מנות צמחוניות
+                </div>
+              </div>
+              <div class="row align-items-center">
+                <div class="col-sm summaryField">
+                  <span id="numOfVegie"> </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="row align-items-center">
+                <div class="col-sm summaryField">
+                  מנות טבעוניות
+                </div>
+              </div>
+              <div class="row align-items-center">
+                <div class="col-sm summaryField">
+                  <span id="numOfVegan"> </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="row align-items-center">
+                <div class="col-sm summaryField">
+                  מנות ללא גלוטן
+                </div>
+              </div>
+              <div class="row align-items-center">
+                <div class="col-sm summaryField">
+                  <span id="numOfGlotenFree"> </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="transportSummary">
+            <div class="row align-items-center">
+              <div class="col-sm">
+                סה"כ הסעות
+              </div>
+              <div class="col-sm">
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                    הסעה מב"ש
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                    <span id="numOfSouthTrasport"> </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                    הסעה מהמרכז
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                    <span id="numOfCenterTransport"> </span>
+                  </div>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <script src="./renderer.js"></script>
+
+    <script>
+      const data = {
+        totalInvited: 390,
+        numOfconfirmed: 300,
+        numOfNotArriving: 70,
+        pendingInvitation: 20,
+        notArrivingTable: [
+          {
+            name: 'אלי ציבנרג',
+            phone: '0543102724',
+          },
+          {
+            name: 'אלי ציבנרג',
+            phone: '0543102724',
+          },
+          {
+            name: 'אלי ציבנרג',
+            phone: '0543102724',
+          },
+          {
+            name: 'אלי ציבנרג',
+            phone: '0543102724',
+          },
+          {
+            name: 'אלי ציבנרג',
+            phone: '0543102724',
+          },
+          {
+            name: 'אלי ציבנרג',
+            phone: '0543102724',
+          },
+          {
+            name: 'אלי ציבנרג',
+            phone: '0543102724',
+          },
+          {
+            name: 'אלי ציבנרג',
+            phone: '0543102724',
+          },
+          {
+            name: 'אלי ציבנרג',
+            phone: '0543102724',
+          },
+          {
+            name: 'אלי ציבנרג',
+            phone: '0543102724',
+          },
+          {
+            name: 'אלי ציבנרג',
+            phone: '0543102724',
+          },
+          {
+            name: 'אלי ציבנרג',
+            phone: '0543102724',
+          },
+        ],
+        pendingInvitationTable: [
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+          },
+          {
+            name: 'אלי ציבנרג',
+            phone: '0543102724',
+          },
+        ],
+        partiallyArrivingTable: [
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+          {
+            name: 'אמבר ציבנרג',
+            phone: '0509535595',
+            invited: 2,
+            confirmed: 1,
+          },
+        ],
+      }
+
+      // setTimeout(() => {
+      //   updateTables(data);
+      //       $("#spinner").remove();
+      //       $('#mainContainer').removeAttr('hidden');
+      // }, 3000)
+
+      getData()
+
+      function getData() {
+        fetch('http://localhost:3000/api/users/data.json')
+          .then(function(response) {
+            return response.json()
+          })
+          .then(function(myJson) {
+            updateTables(myJson)
+            $('#spinner').remove()
+            $('#mainContainer').removeAttr('hidden')
+          })
+      }
+
+      function updateTables(data) {
+        for (const key in data) {
+          switch (key) {
+            case 'notArrivingTable':
+            case 'pendingInvitationTable':
+            case 'partiallyArrivingTable':
+            case 'arrivingTable':
+            case 'unrecievedInvitationTable':
+              buildHtmlTable(`#${key}`, data[key])
+
+              break
+            default:
+              try {
+                document.getElementById(key).innerText = data[key]
+              } catch (error) {
+                console.log(error)
+              }
+              break
+          }
+        }
+      }
+
+      // Builds the HTML Table out of myList.
+      function buildHtmlTable(selector, myList) {
+        var columns = addAllColumnHeaders(myList, selector)
+
+        for (var i = 0; i < myList.length; i++) {
+          var row$ = $('<tr/>')
+          for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+            var cellValue = myList[i][columns[colIndex]]
+            if (cellValue == null) cellValue = ''
+            row$.append($('<td/>').html(cellValue))
+          }
+          $(selector).append(row$)
+        }
+      }
+
+      // Adds a header row to the table and returns the set of columns.
+      // Need to do union of keys from all records as some records may not contain
+      // all records.
+      function addAllColumnHeaders(myList, selector) {
+        var columnSet = []
+        var headerTr$ = $('<tr/>')
+
+        for (var i = 0; i < myList.length; i++) {
+          var rowHash = myList[i]
+          for (var key in rowHash) {
+            if ($.inArray(key, columnSet) == -1) {
+              columnSet.push(key)
+              headerTr$.append($('<th/>').html(key))
+            }
+          }
+        }
+        $(selector).append(headerTr$)
+
+        return columnSet
+      }
+    </script>
+  </body>
+</html>

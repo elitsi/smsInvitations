@@ -68,6 +68,8 @@ export default class SMSHandler {
 
             const number = phone.startsWith('0') ? phone.substring(1) : phone
             const message = await this.buildMessage(phone, userId)
+            
+            console.log(`sending to: ${number}`);
 
             // Create publish parameters
             var params = {
@@ -84,6 +86,7 @@ export default class SMSHandler {
             // Handle promise's fulfilled/rejected states
             publishTextPromise.then(
                 function (data) {
+                    console.log(data);
                     console.log("MessageID is " + data.MessageId);
                 }).catch(
                 function (err) {

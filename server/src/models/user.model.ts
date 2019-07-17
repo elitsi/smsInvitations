@@ -31,11 +31,14 @@ export class User extends Typegoose {
   @prop()
   invitationSent: boolean
 
+  @prop({default: false})
+  userAnswered: boolean
+
   @prop()
   invitationAnswer: number
 
-  @prop()
-  foodType: {vegie: {type: number, default: 0}, vegan: {type: number, default: 0}, gloten_free: {type: number, default: 0}}
+  @prop({ default: {vegie: 0, vegan: 0, gloten_free: 0}})
+  foodType: {vegie: number, vegan: number, gloten_free: number}
 
   @prop()
   transportSouth: boolean
@@ -46,7 +49,7 @@ export class User extends Typegoose {
   @prop()
   phoneNumber: string
 
-  @prop()
+  @prop({default: false})
   invited: number
 }
 
