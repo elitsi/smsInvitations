@@ -103,7 +103,7 @@ export default class ArrivalsComponent extends React.Component {
       .patch('/api/users/updateAnswer', data)
       .then((response) => {
         console.log(response)
-        this.setState({answerSent: true})
+        this.setState({answerSent: true});
       })
       .catch((error) => {
         console.log(error)
@@ -127,7 +127,9 @@ export default class ArrivalsComponent extends React.Component {
         <Container className="arrivals">
           <Row>
             <Col className="wedding-title">
-              !תודה רבה, תשובתכם התקבלה. נתראה בחתונה
+              .תודה רבה, תשובתכם התקבלה
+              <br></br>
+               !מחכים לראותכם בחתונה
               <br></br>
               <br></br>
               <div className="date">
@@ -140,6 +142,11 @@ export default class ArrivalsComponent extends React.Component {
               </div>
             </Col>
           </Row>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
           <Row className="freepik">
             <a href="http://www.freepik.com">Designed by Freepik</a>
           </Row>

@@ -195,13 +195,10 @@ async function validateAnswerData(userId: string,
   transportCenter: boolean): Promise<{valid: boolean, error: string}> {
     try {
       const user = await UserModel.findOne({_id: userId});
-      if(invitationAnswer > user.invited) {
-        return {valid: false, error: "Answer is larger than invited number."}
-      }
       if(isNaN(foodType.vegie) || isNaN(foodType.vegan) || isNaN(foodType.gloten_free)) {
         return {valid: false, error: "Food object is not valid."}
       }
-      if((foodType.vegie + foodType.vegan + foodType.gloten_free) > user.invited) {
+      if((foodType.vegie + foodType.vegan + foodType.gloten_free) > invitationAnswer) {
         return {valid: false, error: "Food answer is larger than invited number."}
       }
       if(transportSouth && transportCenter) {
