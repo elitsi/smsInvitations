@@ -4,7 +4,7 @@ import { ArrivalsComponent, WeddingDetails } from './components'
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" >
       <script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js" />
       <script src="https://unpkg.com/react/umd/react.production.js" crossOrigin="anonymous" />
       <script src="https://unpkg.com/react-dom/umd/react-dom.production.js" crossOrigin="anonymous" />

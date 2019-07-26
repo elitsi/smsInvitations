@@ -17,8 +17,11 @@ const SpecialDishComponent = props => {
   return (
     <Container className="checkbox-container">
       <Form.Check type="checkbox">
-        <Form.Check.Label>מנה מיוחדת</Form.Check.Label>
+        <div>
+          <span style={{fontSize: "12px", marginRight: "3px", position: "relative", "top": "-2px"}}>(לחץ על מנת לפתוח את האפשרויות)</span>
+          <Form.Check.Label>מנה מיוחדת</Form.Check.Label>
         <Form.Check.Input type="checkbox" checked={props.dishes.specialDish} onChange={props.handleChangeSpecialDish} />
+        </div>
       </Form.Check>
 
       {dishes}
