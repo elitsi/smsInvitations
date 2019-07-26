@@ -180,10 +180,10 @@
               </div>
             </div>
           </div>
-
+          
           <div class="row">
-            <div class="text-center mt-2 col-md-12">
-              <div class="summaryTable">
+            <div class="text-center mt-2  col-md-6">
+              <div class="ml-2 summaryTable">
                 <div class="row align-items-center">
                   <div class="col-sm summaryField">
                     לא קיבלו הודעה
@@ -196,7 +196,23 @@
                 </div>
               </div>
             </div>
+            <div class="text-center mt-2  col-md-6">
+              <div class="ml-2 summaryTable">
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                     מגיעים מעבר להזמנה
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-sm summaryField">
+                    <table style="width:100%" id="overArrivingTable"></table>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+
+    
         </div>
 
         <div class="foodSummary">
@@ -304,6 +320,7 @@
             case 'partiallyArrivingTable':
             case 'arrivingTable':
             case 'unrecievedInvitationTable':
+            case 'overArrivingTable':
               buildHtmlTable(`#${key}`, data[key])
 
               break
@@ -321,7 +338,7 @@
       // Builds the HTML Table out of data recieved..
       function buildHtmlTable(selector, myList) {
         var columns = addAllColumnHeaders(myList, selector)
-
+        debugger;
         for (var i = 0; i < myList.length; i++) {
           var row$ = $('<tr/>')
           for (var colIndex = 0; colIndex < columns.length; colIndex++) {

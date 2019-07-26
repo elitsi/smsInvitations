@@ -18,7 +18,8 @@ export type IDashboardData = {
   pendingInvitation: number
   unrecievedInvitation: number
   numOfconfirmed: number
-  numOfNotArriving: number
+  numOfNotArriving: number,
+  numOfOverArriving: number,
   numOfVegie: number
   numOfVegan: number,
   numOfGlotenFree: number,
@@ -29,4 +30,5 @@ export type IDashboardData = {
   pendingInvitationTable: Array<{ name: string; phone: string, invited: number }>
   unrecievedInvitationTable: Array<{ name: string; phone: string, invited: number }>
   partiallyArrivingTable: Array<{ name: string; phone: string; invited: number; confirmed: number }>
+  overArrivingTable: Array<{ name: string; phone: string; invited: number; confirmed: number }>
 }

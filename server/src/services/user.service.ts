@@ -55,7 +55,7 @@ async function updateUserAnswer(
           invitationAnswer: invitationAnswer,
           foodType: foodType,
           transportSouth: transportSouth,
-          transportCeneter: transportCenter,
+          transportCenter: transportCenter,
           updatedAt: new Date(),
           userAnswered: true,
         },
@@ -76,6 +76,7 @@ async function getUsersData() {
     unrecievedInvitation: 0,
     numOfconfirmed: 0,
     numOfNotArriving: 0,
+    numOfOverArriving: 0,
     numOfVegie: 0,
     numOfVegan: 0,
     numOfGlotenFree: 0,
@@ -85,14 +86,15 @@ async function getUsersData() {
     notArrivingTable: [],
     partiallyArrivingTable: [],
     pendingInvitationTable: [],
-    unrecievedInvitationTable: []
+    unrecievedInvitationTable: [],
+    overArrivingTable: []
   }
 
   for (const user of users) {
     data.totalInvited += user.invited
-    data.numOfVegie += user.foodType.vegie;
-    data.numOfVegan += user.foodType.vegan;
-    data.numOfGlotenFree += user.foodType.gloten_free;
+    data.numOfVegie += user.foodType ? user.foodType.vegie : 0;
+    data.numOfVegan += user.foodType ? user.foodType.vegan: 0;
+    data.numOfGlotenFree += user.foodType ? user.foodType.gloten_free : 0;
 
     if(user.transportSouth) {
       data.numOfSouthTrasport += user.invitationAnswer;
@@ -118,7 +120,18 @@ async function getUsersData() {
           phone: user.phoneNumber,
           invited: user.invited,
         })
-      } else {
+      }
+      else if(user.invited < user.invitationAnswer) {
+        data.numOfconfirmed += user.invitationAnswer;
+        data.numOfOverArriving += user.invitationAnswer;
+        data.overArrivingTable.push({
+          name: `${user.firstName} ${user.lastName}`,
+          phone: user.phoneNumber,
+          invited: user.invited,
+          confirmed: user.invitationAnswer
+        })
+      } 
+      else {
         data.numOfNotArriving += user.invited
         data.notArrivingTable.push({
           name: `${user.firstName} ${user.lastName}`,
