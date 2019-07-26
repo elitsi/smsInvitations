@@ -7,8 +7,8 @@ const SpecialDishComponent = props => {
   const dishes = props.dishes.specialDish ? (
     <table>
       <tbody>
-        {props.dishes.disheTypes.map(dish => {
-          return <DishDropdown label={dish.label} onChange={e => dish.changeCallback(e.target.value)} />
+        {props.dishes.disheTypes.map((dish, index) => {
+          return <DishDropdown key={index} label={dish.label} onChange={e => dish.changeCallback(e.target.value)} maxOptions={props.maxOptions} />
         })}
       </tbody>
     </table>
@@ -23,9 +23,9 @@ const SpecialDishComponent = props => {
 
       {dishes}
 
-      {props.transports.transportTypes.map(transport => {
+      {props.transports.transportTypes.map((transport, index) => {
         return (
-          <Form.Check type="checkbox">
+          <Form.Check key={index} type="checkbox">
             <Form.Check.Label>{transport.label}</Form.Check.Label>
             <Form.Check.Input type="checkbox" checked={transport.value} onChange={transport.changeCallback} />
           </Form.Check>
