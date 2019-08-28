@@ -7,7 +7,7 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "baseUrl": ".",
-        "target": "es5",
+        "target": "es6",
         "outDir": "out",
         "sourceMap": true
     }
