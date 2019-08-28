@@ -178,7 +178,7 @@ export default class ArrivalsComponent extends React.Component {
           value: this.state.transports['transportSouth'],
         },
         {
-          label: 'הסעה מבקעת אונו',
+          label: 'הסעה מגני תקווה',
           changeCallback: () => this.handleTransportChange('transportCenter'),
           value: this.state.transports['transportCenter'],
         },
