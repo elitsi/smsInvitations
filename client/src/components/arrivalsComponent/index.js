@@ -129,6 +129,8 @@ export default class ArrivalsComponent extends React.Component {
             <Col className="wedding-title">
               .תודה רבה, תשובתכם התקבלה
               <br></br>
+              הנכם מגיעים {this.state.total} אנשים
+              <br></br>
                !מחכים לראותכם בחתונה
               <br></br>
               <br></br>
